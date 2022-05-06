@@ -1,1 +1,2 @@
-# dj_email_login_2
+Complete authentication with email or username
+ckeditor - rich editor
