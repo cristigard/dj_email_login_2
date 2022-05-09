@@ -1,0 +1,23 @@
+{% extends 'knowledge/base.html' %}
+{% block content %}
+
+<div>
+        <div class="flex-container">
+                <div class="flex-child magenta">
+                  <h3>Add Manufacturer</h3>
+                  <p></p>
+                </div>
+                <div class="flex-child green">
+                  <a href="{% url 'manufacturer-list' %}" class="btn btn-secondary btn-sm" role="button">List all</a>
+                </div>
+              </div>
+        <hr style="width: 100%;margin: 0px;">
+        <br>
+        <form class="form-group" method="post">{% csrf_token %}
+                {% load crispy_forms_tags %}
+                {{form | crispy }}
+                <br>      
+                <button type="submit" class="btn btn-secondary btn">Add</button>
+        <form>
+</div>
+{% endblock %} 
