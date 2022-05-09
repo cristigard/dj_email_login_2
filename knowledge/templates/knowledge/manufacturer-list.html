@@ -1,0 +1,40 @@
+{% extends 'knowledge/base.html' %}
+{% block content %}
+
+
+<div class="flex-container">
+  <div class="flex-child magenta">
+    <h3>Manufacturers</h3>
+    <p></p>
+  </div>
+  <div class="flex-child green">
+    <a href="{% url 'manufacturer-create' %}" class="btn btn-secondary btn-sm" role="button">Add manufacturer</a>
+  </div>
+</div>
+
+<table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Created</th>
+        <th scope="col">Updated</th>
+        <th scope="col">Created by</th>
+        <th scope="col">Manage</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for manufacturer in manufacturers %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{manufacturer.name}}</td>
+        <td>{{manufacturer.created_date}}</td>
+        <td>{{manufacturer.updated_date}}</td>
+        <td>{{manufacturer.created_by}}</td>
+        <td><a href="{{manufacturer.get_delete_url}}">Delete</a> / <a href="{{manufacturer.get_update_url}}">Update</a></td>
+      </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+
+  {% endblock %} 

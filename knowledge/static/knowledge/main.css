@@ -1,0 +1,16 @@
+.flex-container {
+  display: flex;
+}
+.flex-child {
+  flex: 1;
+  text-align: right;
+
+}  
+.flex-child:first-child {
+  text-align:left
+} 
+
+#cke_id_name{
+  max-width:120% !important;
+  background-color:red
+  }
