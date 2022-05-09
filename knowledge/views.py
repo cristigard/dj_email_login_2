@@ -4,29 +4,28 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from .models import Equipment, Manufacturer, Category, Error
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 from .forms import ManufacturerForm
 
 
 
 # Create your views here.
 
-class ManufacturerUpdateView(UpdateView):
+class ManufacturerUpdateView(SuccessMessageMixin,UpdateView):
     model = Manufacturer
     form_class = ManufacturerForm
     template_name = 'knowledge/manufacturer-update.html'
     context_object_name = "manufacturer"
+    success_url = reverse_lazy('manufacturer-list')
+    success_message = "Manufacturer %(name)s updated successfully"
 
 
-class ManufacturerDeleteView(DeleteView):
+class ManufacturerDeleteView(SuccessMessageMixin,DeleteView):
     model = Manufacturer
     template_name = 'knowledge/manufacturer-delete.html'
     context_object_name = 'manufacturer'
     success_url = reverse_lazy('manufacturer-list')
     success_message = "Manufacturer deleted successfully."
-
-    def delete(self, request, *args, **kwargs):
-        messages.success(self.request, self.success_message)
-        return super().delete(request, *args, **kwargs)
 
 
 class ManufacturerListView(ListView):
@@ -48,44 +47,3 @@ class ManufacturerCreateView(SuccessMessageMixin,CreateView):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# def manufacturer_view(request):
-#     form = ManufacturerForm()
-#     manufacturers = Manufacturer.objects.all()
-#     if request.method == "POST":
-#         form = ManufacturerForm(request.POST)
-#         if form.is_valid():
-#             form.cleaned_data['created_by'] = request.user
-#             form.save()
-#             form = ManufacturerForm()
-#             return render(request,'knowledge/manufacturer-create.html',{"form":form, "manufacturers":manufacturers})
-#     return render(request,'knowledge/manufacturer-create.html', {"form":form, "manufacturers":manufacturers})
