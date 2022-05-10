@@ -88,3 +88,6 @@ class CustomUserLoginForm(AuthenticationForm):
         {'class': "form-control",
                     'style': 'max-width: 300px;'}
         )
+        self.fields['username'].label = 'Email / Username'
+        
+        
